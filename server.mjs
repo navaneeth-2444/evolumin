@@ -22,7 +22,7 @@ app.post('/api/chat', async (req, res) => {
         1. Possible condition(s)
         2. If minor: Brief first aid steps
         3. If serious: Clearly state to seek immediate medical attention
-        
+        Do not bolden or italicise words(this is a must)
         Keep the response concise and direct. I don't want a heading. I want the small paragraph to start with the name
         of the most probable disease and then goes on to explain about it in a short paragraph.(for example, if it is a fever then :
         "Common Cold is the most common type of...")(do not make this part pointwise. I want the first part to be in a small paragraph or sentence)
