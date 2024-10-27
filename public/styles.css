@@ -211,6 +211,25 @@ button:hover {
         0 3px 4px rgba(0, 0, 0, 0.1),      /* Close shadow for edge definition */
         inset 0 -2px 2px rgba(255, 255, 255, 0.05); /* Inner shadow for more depth */
 }
+.translate-btn {
+  position: relative;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  padding: 10px;
+  border-radius: 36px;
+  background-color: #064881;
+  color: white;
+  border: none;
+  font-family: 'Gendy','Arial';
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.translate-btn:hover {
+  background-color: #023059;
+}
 
 
 .hidden {
