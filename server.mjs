@@ -23,7 +23,8 @@ app.post('/api/chat', async (req, res) => {
         2. If minor: Brief first aid steps
         3. If serious: Clearly state to seek immediate medical attention
         Do not bolden or italicise words(this is a must)
-        Keep the response concise and direct. I don't want a heading. I want the small paragraph to start with the name
+        
+        Do not exceed the answer more than 25 words.(this is very important).Keep the response concise and direct. I don't want a heading. I want the small paragraph to start with the name
         of the most probable disease and then goes on to explain about it in a short paragraph.(for example, if it is a fever then :
         "Common Cold is the most common type of...")(do not make this part pointwise. I want the first part to be in a small paragraph or sentence)
         if minor, then pointwise give steps to remedy and make it concise. If major, then direct to a hospital. Make the response smaller and more compact and the first paragraph should just give important info and not this huge paragraph`;

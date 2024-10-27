@@ -11,27 +11,82 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
+  document.getElementById("checkSymptomsButton").addEventListener("click", expandAndAnalyze);
 
-document.getElementById('symInput').addEventListener('keypress', async function(e) {
-    if (e.key === 'Enter') {
-        const symptoms = this.value;
 
-        if (!symptoms) {
-            alert("Please describe your symptoms!");
-            return;
+  async function getAnswer() {
+    const inputBox = document.getElementById("inputBox");
+    const symptoms = inputBox.value;
+
+    if (!symptoms) {
+        alert("Please describe your symptoms!");
+        return;
+    }
+
+    // Show loading state in the input box
+    const originalValue = inputBox.value;
+    inputBox.value = "Analyzing symptoms...";
+    inputBox.disabled = true; // Disable input while processing
+
+    try {
+        const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ question: symptoms })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.details || 'Failed to analyze symptoms');
         }
 
-        // Immediately expand the box and input
-        const box = this.parentElement;
-        box.classList.add('SymExpand');
-        this.classList.add('expanded-input');
+        const data = await response.json();
         
-        // Store original input and show loading
-        const originalText = this.value;
-        this.value = "Analyzing symptoms...";
-        this.disabled = true;
+        // Make the input box larger to accommodate the response
+        inputBox.style.height = 'auto'; // Reset height
+        inputBox.style.height = `${inputBox.scrollHeight}px`; // Set to content height
+        
+        // Update the input box with the response
+        inputBox.value = data.completion;
+        
+    } catch (error) {
+        // If there's an error, show it in the input box
+        inputBox.value = `Error: ${error.message}`;
+        console.error("Error:", error);
+    } finally {
+        // Re-enable the input box
+        inputBox.disabled = false;
+    }
+}
 
+// Add this to make the textarea auto-resize as content changes
+document.getElementById("inputBox").addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = `${this.scrollHeight}px`;
+});
+
+function expandAndAnalyze() {
+    const inputBox = document.getElementById("inputBox");
+    const symptoms = inputBox.value;
+
+    if (!symptoms) {
+        alert("Please describe your symptoms!");
+        return;
+    }
+
+    // First expand the input box
+    inputBox.classList.add('expanded');
+
+    // Wait for expansion animation to complete before showing loading state
+    setTimeout(async () => {
         try {
+            // Show loading state
+            const originalValue = inputBox.value;
+            inputBox.value = "Analyzing symptoms...";
+            inputBox.disabled = true;
+
             const response = await fetch("/api/chat", {
                 method: "POST",
                 headers: {
@@ -47,20 +102,30 @@ document.getElementById('symInput').addEventListener('keypress', async function(
 
             const data = await response.json();
             
-            // Display the response
-            this.value = `${data.completion}`;
+            // Update the input box with the response
+            inputBox.value = data.completion;
             
         } catch (error) {
-            this.value = `Error: ${error.message}`;
+            inputBox.value = `Error: ${error.message}`;
             console.error("Error:", error);
         } finally {
-            this.disabled = false;
+            inputBox.disabled = false;
         }
-    }
-});
+    }, 500); // Matches the transition duration in CSS
+}
 
-// Auto-resize textarea as content changes
-document.getElementById('symInput').addEventListener('input', function() {
-    this.style.height = 'auto';
-    this.style.height = `${this.scrollHeight}px`;
+// Function to collapse the input box
+function collapseInputBox() {
+    const inputBox = document.getElementById("inputBox");
+    inputBox.classList.remove('expanded');
+    inputBox.value = '';
+    inputBox.disabled = false;
+}
+
+// Auto-resize only when not expanded
+document.getElementById("inputBox").addEventListener('input', function() {
+    if (!this.classList.contains('expanded')) {
+        this.style.height = 'auto';
+        this.style.height = `${this.scrollHeight}px`;
+    }
 });

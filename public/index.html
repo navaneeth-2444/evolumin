@@ -17,10 +17,14 @@
       </div>
     </div>
     <div class="right-top">
-      <h1 class="SymTitle">What are you ailing from? </h1>
-      <div class="sym-box">
-        <input type="text" id="symInput" placeholder="Type something...">
-      </div>
+      
+      <h1>What are you ailing from?</h1>
+        <textarea class="SymInput"
+            id="inputBox" 
+            rows="4" 
+            placeholder="Describe your symptoms here..."></textarea>
+        <button onclick="expandAndAnalyze()">Check Symptoms</button>
+        <button onclick="collapseInputBox()" style="left: calc(20px + 32%);">Reset</button>
     </div>
     <div class="right-bottom"></div>
     <div class="bottom"></div>

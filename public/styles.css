@@ -55,6 +55,8 @@
     width: 100%;
     height: 90%;
     position: relative;
+    overflow: hidden;
+    padding: 20px;
   }
 
   .bottom {
@@ -106,27 +108,8 @@
     font-weight: 100;
     line-height: 0.9;
   }
-  .sym-box {
-    position: absolute;
-    background-color: aliceblue;
-    border-radius: 100px;
-    width: 300px;
-    height: 50px;
-    top:300px;
-    left: 6%;
-    transition: all 0.5s ease;
-    transform-origin: center;
-  }
-
-  .sym-box input {
-    width: 90%;
-    height: 30px;
-    margin: 10px;
-    border: none;
-    padding: 5px;
-    outline: none;
-    background-color: transparent;
-  }
+  
+  
   .expand {
     position: absolute  ;
     width: 100%  ;
@@ -138,67 +121,60 @@
   }
 
 
-    .expanded-input {
-      width: 95%  ;
-      height: 80%  ;
-      margin: 20px  ;
-      padding: 20px  ;
-      font-size: 30px  ;
-      resize: none  ;
-      transition: all 0.5s ease;
-      white-space: pre-wrap;
-      line-height: 1.5;
-      overflow-y: auto; /* Allows vertical scrolling */
-      overflow-wrap: break-word; /* Ensures long words wrap properly */
-      word-break: break-word; /* Breaks long words if necessary */
-      display: block;
-  }
-
-  .SymExpand {
-      transition: all 0.5s ease  ;
-      overflow: hidden; /* Prevent content from spilling outside */
-    position: absolute  ;
-    width: 100%  ;
-    height: 100%  ;
-    top: 0  ;
-    left: 0  ;
-    border-radius: 36px  ;
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .SymExpand .expanded-input {
-    background-color: transparent;
+  #inputBox {
+    position: absolute;
+    top: 100px;  /* Adjusted from 200px to give space for the title */
+    left: 20px;
+    width: 90%;
+    height: 12%;
+    resize: none;
+    padding: 10px;
+    margin: 10px 0;
     border-radius: 36px;
-    position: relative  ; /* Changed from absolute */
-    top: 0  ; /* Reset positioning */
-    left: 0  ;
-    width: 100%  ;
-    height: auto  ; /* Allow height to adjust to content */
-    min-height: 100px;
-    overflow-y: auto;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    margin: 0  ; /* Reset margins */
+    outline: none;
+    background-color: white;
+    transition: all 0.5s ease;
+    opacity: 1;
 }
 
-  .SymExpand {
-    position: absolute  ;
-    width: 100%  ;
-    height: 100%  ;
-    top: 0  ;
-    left: 0  ;
-    border-radius: 36px  ;  /* Match right-top border radius */
-    z-index: 999;
-  }
+#inputBox.expanded {
+    position: absolute;
+    top: -10px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+    background-color: white;
+    border-radius: 24px;
+    padding: 20px;
+    font-size: 16px;
+    outline: none;
+    
+}
+button {
+  position: absolute;
+  bottom: 20px;  /* Position at bottom instead of using top */
+  left: 20px;
+  border-radius: 36px;
+  height: 40px;
+  width: 30%;
+  cursor: pointer;
+  background-color: #064881;
+  color: white;
+  border: none;
+  font-family: 'Gendy', 'Arial';
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #023059;
+}
   .fade-out {
     opacity: 0;
     transition: opacity 0.5s ease;
   }
   
-  .main-content,.inner-box, .right-bottom, .sidebar, .right-top, .bottom {
+  .SymInput,.main-content,.inner-box, .right-bottom, .sidebar, .right-top, .bottom {
     box-shadow: 
         0 10px 20px rgba(0, 0, 0, 0.4),    /* Main depth shadow */
         0 5px 8px rgba(0, 0, 0, 0.2),      /* Medium shadow */
