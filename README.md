@@ -1,0 +1,1 @@
+This project aims to integrate technology to address critical challenges such as emergency response, symptom diagnosis, and patient engagement. The features in this website collectively improves healthcare accessibility, efficiency, and outcomes, aligning with the core objectives of the healthcare track.
