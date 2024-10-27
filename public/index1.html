@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worldwide Hospital Locator</title>
+    <script src="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.js"></script>
+    <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.css" />
+    <link rel="stylesheet" href="style1.css">
+    
+</head>
+<body>
+    <div class="header">
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchInput" 
+                class="search-input" 
+                placeholder="Enter any location"
+            >
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div id="map"></div>
+        <div id="sidebar" class="sidebar"></div>
+        <div id="errorMessage" class="error-message"></div>
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <span>Searching hospitals...</span>
+        </div>
+    </div>
+    <script src="script1.js"></script>
+
+</body>
+</html>
