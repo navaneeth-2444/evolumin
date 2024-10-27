@@ -3,6 +3,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 const app = express();
 const port = 3000;
 
+
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI('AIzaSyBDEA1iia2FldTyBEovX7IfNKbkqJhkLeM');
 const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
@@ -12,12 +13,13 @@ app.use(express.static('public'));
 
 app.post('/api/chat', async (req, res) => {
     const symptoms = req.body.question;
+    const lang = req.body.lang || 'en';
     
     try {
         console.log('Received symptoms:', symptoms);
-        
+         // Check language passed from client
         // Structured prompt for consistent responses
-        const prompt = `The user is suffering from: ${symptoms}. 
+        const prompt = `The user is suffering from: ${symptoms}.${lang === 'ml' ? 'Respond in Malayalam. ' : ''} 
         Analyze these symptoms and provide:
         1. Possible condition(s)
         2. If minor: Brief first aid steps

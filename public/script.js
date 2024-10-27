@@ -136,7 +136,7 @@ async function getAnswer() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ question: symptoms })
+            body: JSON.stringify({ question: symptoms,lang: isTranslated ? 'ml' : 'en' })
         });
 
         if (!response.ok) {
