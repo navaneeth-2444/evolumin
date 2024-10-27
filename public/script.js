@@ -113,6 +113,28 @@ function translateToEnglish() {
     }
 }
 
+function expandInnerBox() {
+    const innerBox = document.querySelector('.inner-box');
+    innerBox.classList.add('expand'); // Add 'expand' class to trigger expansion
+}
+
+function contractInnerBox() {
+    const innerBox = document.querySelector('.inner-box');
+    innerBox.classList.remove('expand');
+
+    // Remove the iframe
+    const iframe = document.getElementById('iframeElement');
+    if (iframe) {
+        iframe.remove();
+    }
+}
+
+// Event listener for "Esc" key
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        contractInnerBox();
+    }
+});
 async function getAnswer() {
     const inputBox = document.getElementById("inputBox");
     const symptoms = inputBox.value;
