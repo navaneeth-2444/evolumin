@@ -7,9 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
       if (event.key === 'Enter') {
         event.preventDefault(); // Prevents form submission if inside a form
         innerBox.classList.add('expand');
+        setTimeout(() => {
+            // Initialize your map here
+            initializeMap();
+        }, 500);
       }
     });
   });
+
+
+  function initializeMap() {
+    const canvas = document.getElementById('canvas');
+    // Add your map initialization code here
+}
+
+
+  document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('expanded-input')) {
+        event.target.focus();
+    }
+});
+
+
   
   document.getElementById("checkSymptomsButton").addEventListener("click", expandAndAnalyze);
 
